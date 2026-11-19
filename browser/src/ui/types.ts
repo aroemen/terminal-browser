@@ -215,6 +215,7 @@ export interface TabView {
   preload: string | null;
   clipboardRead: boolean;
   transparent: boolean;
+  userAgent: string | null;
 }
 
 export interface TabActions {

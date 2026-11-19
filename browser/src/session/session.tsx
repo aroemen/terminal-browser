@@ -492,6 +492,7 @@ class Session {
       preload: this.browserPreload,
       clipboardRead: this.sessionFlags.clipboardRead,
       transparent: tab.transparent || this.sessionFlags.transparent || this.settings.get("window.transparent") === "on",
+      userAgent: this.settings.get("browser.userAgent") || null,
     }));
   }
 

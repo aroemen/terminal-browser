@@ -1,4 +1,4 @@
-import { BrowserWindow, screen } from "electron";
+import { BrowserWindow, app, screen } from "electron";
 import type { EngineKeyEvent, PastedImage, PointerEvent, PointerShape, Surface, WheelEvent } from "../react";
 import {
   allowClipboardRead,
@@ -79,6 +79,7 @@ export interface HostOptions {
   background: string;
   clipboardRead: boolean;
   proxy: ProxySetting | null;
+  userAgent: string | null;
   browserWindowOptions: BrowserWindowOptions;
 }
 
@@ -153,6 +154,7 @@ export class PageHost {
       windowOptions(this.browserWindowOptions, size, offscreenPreferences(this.renderScale)),
     );
     prepareSession(this.window.webContents.session);
+    this.window.webContents.session.setUserAgent(options.userAgent || app.userAgentFallback);
     const proxied = options.proxy ? routeThroughProxy(this.window.webContents.session, options.proxy) : null;
     if (options.proxy) this.window.webContents.setWebRTCIPHandlingPolicy("disable_non_proxied_udp");
     if (this.clipboardRead) allowClipboardRead(this.window.webContents);

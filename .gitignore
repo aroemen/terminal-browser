@@ -35,6 +35,7 @@ Thumbs.db
 # Local environment / secrets
 .env
 .env.*
+*.local.*
 
 # Node
 node_modules/

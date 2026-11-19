@@ -540,6 +540,7 @@ function BrowserTabContents({
           devtools={false}
           partition={tab.partition ?? undefined}
           proxy={tab.proxy ?? undefined}
+          userAgent={tab.userAgent ?? undefined}
           preload={tab.preload ?? undefined}
           clipboardRead={tab.clipboardRead}
           browserWindowOptions={tab.transparent ? TRANSPARENT_WINDOW : undefined}
