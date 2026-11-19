@@ -1,4 +1,4 @@
-import { BrowserWindow, screen } from "electron";
+import { app, BrowserWindow, screen } from "electron";
 import type { EngineKeyEvent, PastedImage, PointerEvent, PointerShape, Surface, WheelEvent } from "../react";
 import {
   allowClipboardRead,
@@ -79,6 +79,7 @@ export interface HostOptions {
   background: string;
   clipboardRead: boolean;
   proxy: string | null;
+  userAgent: string | null;
   browserWindowOptions: BrowserWindowOptions;
 }
 
@@ -153,6 +154,7 @@ export class PageHost {
       windowOptions(this.browserWindowOptions, size, offscreenPreferences(this.renderScale)),
     );
     prepareSession(this.window.webContents.session);
+    this.window.webContents.session.setUserAgent(options.userAgent || app.userAgentFallback);
     if (options.proxy) void routeThroughProxy(this.window.webContents.session, options.proxy);
     if (this.clipboardRead) allowClipboardRead(this.window.webContents);
     onDownloadFor(this.window.webContents, (progress) => this.onDownload?.(progress));

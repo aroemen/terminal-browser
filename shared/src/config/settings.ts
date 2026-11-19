@@ -95,6 +95,13 @@ export const SETTINGS = {
     default: "off",
     choices: onOff,
   }),
+  "browser.userAgent": setting({
+    group: "advanced",
+    label: "User agent",
+    hint: "Full user-agent string sent with page requests. Leave blank to use the default.",
+    schema: z.string(),
+    default: "",
+  }),
   "render.fps": setting({
     group: "advanced",
     label: "Frame rate",

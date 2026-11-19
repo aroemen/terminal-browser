@@ -69,6 +69,7 @@ export interface WebViewProps {
   persist?: boolean;
   clipboardRead?: boolean;
   proxy?: string;
+  userAgent?: string;
   browserWindowOptions?: BrowserWindowOptions;
   autoFocus?: boolean;
   passWheel?: boolean;
@@ -264,6 +265,7 @@ export const WebView = forwardRef<WebViewHandle, WebViewProps>(function WebView(
         background: registry.background(),
         clipboardRead: !!initial.clipboardRead,
         proxy: initial.proxy ?? null,
+        userAgent: initial.userAgent ?? null,
         browserWindowOptions,
       },
       (state) => {

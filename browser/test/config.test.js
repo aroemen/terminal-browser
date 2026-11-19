@@ -85,8 +85,10 @@ test("config store round trips settings and shortcuts", () => {
 
   store.setSetting("search.engine", "https://duckduckgo.com/?q=%s");
   store.setSetting("search.suggestions", "off");
+  store.setSetting("browser.userAgent", "ExampleBrowser/1.0");
   assert.equal(store.load().settings["search.engine"], "https://duckduckgo.com/?q=%s");
   assert.equal(store.load().settings["search.suggestions"], "off");
+  assert.equal(store.load().settings["browser.userAgent"], "ExampleBrowser/1.0");
   store.setSetting("search.suggestions", undefined);
   assert.equal(store.load().settings["search.suggestions"].includes("google"), true);
 
